@@ -42,7 +42,7 @@ function adicionarHorasNaData(data, addHora)
     // 2- Convert os dias inteiro
     var HoraAdd = new Number(addHora);
 
-    // 3- Gera os milissegundos dos dias
+    // 3- Gera os milissegundos das horas
     var AddMsDosHoras = (HoraAdd * 60 * 60 * 1000);
 
     // 4- Cria a variavel Date [DataTermino] com os dias acrescentados
