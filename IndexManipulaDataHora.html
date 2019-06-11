@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title> Manipula Data</title>
+        <script src="ManipulaDataHora.js"></script>
+    </head>
+    <body>
+        <span>Data Inicial:</span><input type="datetime-local" id="DtDataIni" name="DtDataIni"><br><br>
+        <span>Prazo:</span><input type="number" id="TxtPrazo" name="TxtPrazo" onblur="return calculaPrazo();"><br><br>
+        <span>Data Termino:</span><input type="datetime-local" id="DtDataIni2" name="DtDataIni2"><br><br>
+        <div class="form-group col-md-2">
+            <label class="control-label" for="TIPO_PRAZO">Tipo Prazo</label>
+            <br>
+            <div id="RadioGroup">
+                <input type="radio" name="TIPO_PRAZO" id="TIPO_PRAZO" value="D" checked="true">&nbsp;&nbsp;Dias &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="TIPO_PRAZO" id="TIPO_PRAZO" value="H">&nbsp;&nbsp;Horas<br>
+            </div>
+        </div>
+    </body>
+    <script>
+    
+        function calculaPrazo()
+        {
+
+            var valorIncremento = document.getElementById("TxtPrazo").value;
+            var valorDataInicial = document.getElementById("DtDataIni").value;
+            var tipoPrazo = document.getElementById("RadioGroup");
+            var tipoPrazoSelecionado = new String();
+           
+            for (var x = 0; x < tipoPrazo.children.length; x++) 
+            {
+
+                var radio = tipoPrazo.children[x];
+
+                if(radio.nodeName == "INPUT")
+                {
+                    if (radio.checked == true) 
+                    {
+                        tipoPrazoSelecionado = radio.value;
+                    }
+                }
+                
+            }
+
+            switch(tipoPrazoSelecionado)
+            {
+                case "D":
+                    // Dias
+                    var valorResultante = adicionarDiasData(valorDataInicial, valorIncremento);
+                    document.getElementById("DtDataIni2").value = valorResultante;
+                break;
+                case "H":
+                      // Horas
+                    var valorResultante = adicionarHorasNaData(valorDataInicial, valorIncremento);
+                    document.getElementById("DtDataIni2").value = valorResultante;
+                break;
+            }
+
+           
+
+            return false;
+            
+        }
+
+    </script>
+</html>
